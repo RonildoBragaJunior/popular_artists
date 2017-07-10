@@ -13,17 +13,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.redballoon.model.User;
 import com.redballoon.service.UserService;
+import com.redballoon.service.LastfmService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private LastfmService lastfmService;
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login");
+		System.out.println("Im here ************************************************************************");
+		lastfmService.listArtistsByCountry("australia");
+
 		return modelAndView;
 	}
 	
