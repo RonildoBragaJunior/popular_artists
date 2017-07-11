@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "popular_artist_rank")
-public class PopularArtistRank {
+public class ArtistRank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

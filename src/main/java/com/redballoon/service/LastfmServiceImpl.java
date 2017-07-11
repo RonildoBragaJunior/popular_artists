@@ -1,7 +1,7 @@
 package com.redballoon.service;
 
 import com.redballoon.model.Artist;
-import com.redballoon.model.PopularArtistRank;
+import com.redballoon.model.ArtistRank;
 import com.redballoon.model.json.LastfmArtists;
 import com.redballoon.model.json.ResponseJSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +29,13 @@ public class LastfmServiceImpl implements LastfmService{
 
             if(artist == null){
                 artist = lastfmArtists.toArtist();
-                artistService.saveArtist(artist);
+                artist = artistService.saveArtist(artist);
 
             }
 
-            PopularArtistRank artistRank = popularArtistRankService.findArtistRankByCountry(artist, country);
+            ArtistRank artistRank = popularArtistRankService.findArtistRankByCountry(artist, country);
             if(artistRank == null){
-                artistRank = new PopularArtistRank();
+                artistRank = new ArtistRank();
                 artistRank.setArtist(artist);
                 artistRank.setCountry(country);
                 artistRank.setListeners(lastfmArtists.getListeners());

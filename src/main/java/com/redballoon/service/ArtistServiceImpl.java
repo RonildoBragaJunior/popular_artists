@@ -14,7 +14,7 @@ public class ArtistServiceImpl implements ArtistService{
     public Artist findArtistByName(String name){
         return artistRepository.findByName(name);
     }
-    public void saveArtist(Artist artist){
-        artistRepository.save(artist);
+    public Artist saveArtist(Artist artist){
+        return artistRepository.save(artist);
     }
 }
