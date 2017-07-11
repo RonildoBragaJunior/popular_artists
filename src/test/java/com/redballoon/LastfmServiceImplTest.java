@@ -2,7 +2,7 @@ package com.redballoon;
 
 import com.redballoon.model.Artist;
 import com.redballoon.service.LastfmServiceImpl;
-import com.redballoon.service.PopularArtistRankService;
+import com.redballoon.service.ArtistListenersService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +18,18 @@ public class LastfmServiceImplTest {
     @Autowired
     private LastfmServiceImpl lastfmServiceImpl;
     @Autowired
-    private PopularArtistRankService popularArtistRankService;
+    private ArtistListenersService artistListenersService;
 
     @Test
     public void listTopArtitstFromAustralia() throws Exception {
-        List<Artist> lastfmArtistsList = lastfmServiceImpl.listTopArtistsByCountry("australia");
+        List<Artist> lastfmArtistsList = lastfmServiceImpl.listArtistByCountry("australia");
         for(Artist artistsList : lastfmArtistsList)
             System.out.println(artistsList.getName());
     }
 
     @Test
     public void listTopArtitstFromBrazil() throws Exception {
-        List<Artist> lastfmArtistsList = lastfmServiceImpl.listTopArtistsByCountry("brazil");
+        List<Artist> lastfmArtistsList = lastfmServiceImpl.listArtistByCountry("brazil");
         for(Artist artistsList : lastfmArtistsList)
             System.out.println(artistsList.getName());
     }

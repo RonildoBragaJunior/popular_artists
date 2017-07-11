@@ -1,7 +1,7 @@
 package com.redballoon.service;
 
 import com.redballoon.model.Artist;
-import com.redballoon.model.ArtistRank;
+import com.redballoon.model.ArtistListeners;
 import com.redballoon.model.json.LastfmArtists;
 import com.redballoon.model.json.ResponseJSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class LastfmServiceImpl implements LastfmService{
     @Autowired
     private ArtistService artistService;
     @Autowired
-    private PopularArtistRankService popularArtistRankService;
+    private ArtistListenersService artistListenersService;
 
     private List<Artist> persistResponse(List<LastfmArtists> lastfmArtistsList, String country){
         List<Artist> artistList = new LinkedList<Artist>();
@@ -33,13 +33,13 @@ public class LastfmServiceImpl implements LastfmService{
 
             }
 
-            ArtistRank artistRank = popularArtistRankService.findArtistRankByCountry(artist, country);
+            ArtistListeners artistRank = artistListenersService.findArtistListenersByCountry(artist, country);
             if(artistRank == null){
-                artistRank = new ArtistRank();
+                artistRank = new ArtistListeners();
                 artistRank.setArtist(artist);
                 artistRank.setCountry(country);
                 artistRank.setListeners(lastfmArtists.getListeners());
-                popularArtistRankService.save(artistRank);
+                artistListenersService.save(artistRank);
             }
 
             artistList.add(artist);
@@ -47,7 +47,7 @@ public class LastfmServiceImpl implements LastfmService{
         return artistList;
     }
 
-    public List<Artist> listTopArtistsByCountry(String country) {
+    public List<Artist> listArtistByCountry(String country) {
 
         RestTemplate restTemplate = new RestTemplate();
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.redballoon.model.json.LastfmArtists;
 
 import java.util.List;
 
@@ -44,12 +43,17 @@ public class HomeController {
 
         ArtistsAjaxResponseBody result = new ArtistsAjaxResponseBody();
 
+        List<Artist> artistList = lastfmService.listArtistByCountry(search.getCountry());
 
-        List<Artist> artistList = lastfmService.listTopArtistsByCountry("australia");
+        if (artistList.size() > 0) {
+            result.setCode("200");
+            result.setMsg("");
+            result.setResult(artistList);
+        } else {
+            result.setCode("204");
+            result.setMsg("No artists in this country!");
+        }
 
         return result;
-
     }
-
-
 }
