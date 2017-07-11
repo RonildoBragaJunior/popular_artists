@@ -1,6 +1,7 @@
 package com.redballoon.model.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.redballoon.model.Artist;
 
 import java.io.Serializable;
 
@@ -39,5 +40,12 @@ public class LastfmArtists implements Serializable{
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Artist toArtist(){
+        Artist artist = new Artist();
+        artist.setName(name);
+        artist.setUrl(url);
+        return artist;
     }
 }

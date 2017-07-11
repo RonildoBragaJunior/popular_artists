@@ -1,5 +1,6 @@
 package com.redballoon;
 
+import com.redballoon.model.Artist;
 import com.redballoon.model.json.LastfmArtists;
 import com.redballoon.service.LastfmServiceImpl;
 import org.junit.Test;
@@ -19,9 +20,9 @@ public class LastfmServiceImplTest {
 
     @Test
     public void listTopArtitst() throws Exception {
-        List<LastfmArtists> lastfmArtistsList = lastfmServiceImpl.listTopArtistsByCountry("australia");
-        for(LastfmArtists lastfmArtists : lastfmArtistsList)
-            System.out.println(lastfmArtists.getName());
+        List<Artist> lastfmArtistsList = lastfmServiceImpl.listTopArtistsByCountry("australia");
+        for(Artist artistsList : lastfmArtistsList)
+            System.out.println(artistsList.getName());
 
     }
 }

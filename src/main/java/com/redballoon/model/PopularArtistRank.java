@@ -54,6 +54,10 @@ public class PopularArtistRank {
         this.listeners = listeners;
     }
 
+    public void setListeners(String listeners) {
+        this.listeners = Long.parseLong(listeners);
+    }
+
     public int getRank() {
         return rank;
     }

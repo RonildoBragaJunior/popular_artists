@@ -1,5 +1,6 @@
 package com.redballoon.controller;
 
+import com.redballoon.model.Artist;
 import com.redballoon.model.User;
 import com.redballoon.service.LastfmService;
 import com.redballoon.service.UserService;
@@ -39,12 +40,12 @@ public class HomeController {
 
     @ResponseBody
     @RequestMapping(value = "/lastfmapi/listArtistsByCountry")
-    public ArtistsAjaxResponseBody getSearchResultViaAjax(@RequestBody SearchCriteria search) {
+    public ArtistsAjaxResponseBody listArtistsByCountry(@RequestBody SearchCriteria search) {
 
         ArtistsAjaxResponseBody result = new ArtistsAjaxResponseBody();
 
 
-        List<LastfmArtists> artistList = lastfmService.listTopArtistsByCountry("australia");
+        List<Artist> artistList = lastfmService.listTopArtistsByCountry("australia");
 
         return result;
 
