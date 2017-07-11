@@ -1,6 +1,5 @@
 package com.redballoon.controller;
 
-import com.redballoon.model.Artist;
 import com.redballoon.model.User;
 import com.redballoon.service.LastfmService;
 import com.redballoon.service.UserService;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.redballoon.service.LastfmArtists;
+import com.redballoon.model.json.LastfmArtists;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class HomeController {
         ArtistsAjaxResponseBody result = new ArtistsAjaxResponseBody();
 
 
-        List<LastfmArtists> artistList = lastfmService.listArtistsByCountry("australia");
+        List<LastfmArtists> artistList = lastfmService.listTopArtistsByCountry("australia");
 
         return result;
 

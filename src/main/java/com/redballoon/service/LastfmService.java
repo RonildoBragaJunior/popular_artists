@@ -1,8 +1,10 @@
 package com.redballoon.service;
 
+import com.redballoon.model.json.LastfmArtists;
+
 import java.util.List;
 
 public interface LastfmService {
 
-    public List<LastfmArtists> listArtistsByCountry(String country);
+    public List<LastfmArtists> listTopArtistsByCountry(String country);
 }

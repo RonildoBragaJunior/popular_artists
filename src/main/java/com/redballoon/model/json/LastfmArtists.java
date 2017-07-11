@@ -1,4 +1,4 @@
-package com.redballoon.service;
+package com.redballoon.model.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
