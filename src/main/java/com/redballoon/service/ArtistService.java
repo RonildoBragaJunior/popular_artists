@@ -7,4 +7,5 @@ public interface ArtistService {
 
     public Artist findArtistByName(String name);
     public Artist saveArtist(Artist artist);
+
 }

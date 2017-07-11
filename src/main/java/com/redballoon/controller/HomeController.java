@@ -1,16 +1,17 @@
 package com.redballoon.controller;
 
-import com.redballoon.model.Artist;
+import com.redballoon.model.ArtistListeners;
 import com.redballoon.model.User;
+import com.redballoon.service.ArtistListenersServiceImpl;
 import com.redballoon.service.LastfmService;
 import com.redballoon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +24,8 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private LastfmService lastfmService;
+    @Autowired
+    private ArtistListenersServiceImpl artistListenersServiceImpl;
 
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
@@ -38,22 +41,30 @@ public class HomeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/lastfmapi/listArtistsByCountry")
-    public ArtistsAjaxResponseBody listArtistsByCountry(@RequestBody SearchCriteria search) {
+    @RequestMapping(value = "/consumeLastfmWebservice")
+    public String consumeLastfmWebservice(@RequestParam("country") String country) {
+        lastfmService.consumeLastfmWebservice(country);
+        return "the list has been updated";
+    }
 
-        ArtistsAjaxResponseBody result = new ArtistsAjaxResponseBody();
+    @ResponseBody
+    @RequestMapping(value = "/searchArtistsByCountry")
+    public String searchArtistsByCountry(@RequestParam("country") String country) {
+        List<ArtistListeners> artistList = artistListenersServiceImpl.listArtistListenersByCountry(country);
+        String result = new String();
 
-        List<Artist> artistList = lastfmService.listArtistByCountry(search.getCountry());
-
-        if (artistList.size() > 0) {
-            result.setCode("200");
-            result.setMsg("");
-            result.setResult(artistList);
-        } else {
-            result.setCode("204");
-            result.setMsg("No artists in this country!");
+        result+="{\"data\": [";
+        for(ArtistListeners artistListeners : artistList) {
+            result+="[\""+artistListeners.getArtist().getId()+"\",";
+            result+="\""+artistListeners.getArtist().getName()+"\",";
+            result+="\""+artistListeners.getCountry()+"\",";
+            result+="\""+artistListeners.getListeners()+"\"],";
         }
+        result = result.substring(0,result.length() - 1);
+        result+="]}";
 
         return result;
     }
+
+
 }

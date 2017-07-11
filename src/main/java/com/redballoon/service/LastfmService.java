@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface LastfmService {
 
-    public List<Artist> listArtistByCountry(String country);
+    public List<Artist> consumeLastfmWebservice(String country);
 }

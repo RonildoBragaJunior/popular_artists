@@ -33,13 +33,13 @@ public class LastfmServiceImpl implements LastfmService{
 
             }
 
-            ArtistListeners artistRank = artistListenersService.findArtistListenersByCountry(artist, country);
-            if(artistRank == null){
-                artistRank = new ArtistListeners();
-                artistRank.setArtist(artist);
-                artistRank.setCountry(country);
-                artistRank.setListeners(lastfmArtists.getListeners());
-                artistListenersService.save(artistRank);
+            ArtistListeners artistListeners = artistListenersService.findArtistListenersByCountry(artist, country);
+            if(artistListeners == null){
+                artistListeners = new ArtistListeners();
+                artistListeners.setArtist(artist);
+                artistListeners.setCountry(country);
+                artistListeners.setListeners(lastfmArtists.getListeners());
+                artistListenersService.save(artistListeners);
             }
 
             artistList.add(artist);
@@ -47,7 +47,7 @@ public class LastfmServiceImpl implements LastfmService{
         return artistList;
     }
 
-    public List<Artist> listArtistByCountry(String country) {
+    public List<Artist> consumeLastfmWebservice(String country) {
 
         RestTemplate restTemplate = new RestTemplate();
 
