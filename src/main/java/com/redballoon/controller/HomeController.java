@@ -1,5 +1,6 @@
 package com.redballoon.controller;
 
+import com.redballoon.model.Artist;
 import com.redballoon.model.User;
 import com.redballoon.service.LastfmService;
 import com.redballoon.service.UserService;
@@ -7,9 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.redballoon.service.LastfmArtists;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -29,8 +35,21 @@ public class HomeController {
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/home");
 
-        lastfmService.listArtistsByCountry("australia");
-
         return modelAndView;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/lastfmapi/listArtistsByCountry")
+    public ArtistsAjaxResponseBody getSearchResultViaAjax(@RequestBody SearchCriteria search) {
+
+        ArtistsAjaxResponseBody result = new ArtistsAjaxResponseBody();
+
+
+        List<LastfmArtists> artistList = lastfmService.listArtistsByCountry("australia");
+
+        return result;
+
+    }
+
+
 }
