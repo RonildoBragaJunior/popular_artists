@@ -5,14 +5,17 @@ import com.redballoon.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("artistServiceImpl")
+@Service("artistService")
 public class ArtistServiceImpl implements ArtistService {
 
     @Autowired
     private ArtistRepository artistRepository;
 
-    public Artist findArtistByName(String name) {
+    public Artist findByName(String name) {
         return artistRepository.findByName(name);
+    }
+    public Artist findById(Long id) {
+        return artistRepository.findById(id);
     }
 
     public Artist saveArtist(Artist artist) {

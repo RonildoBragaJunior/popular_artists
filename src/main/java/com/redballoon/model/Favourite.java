@@ -10,7 +10,7 @@ public class Favourite {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "favourite_id")
-    private int id;
+    private long id;
 
     @ManyToOne
     private Artist artist;
@@ -18,11 +18,11 @@ public class Favourite {
     @ManyToOne
     private User user;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

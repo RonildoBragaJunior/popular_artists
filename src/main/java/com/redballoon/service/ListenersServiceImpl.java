@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Service("artistListenersServiceImpl")
+@Service("listenersServiceImpl")
 public class ListenersServiceImpl implements ListenersService {
 
     @Autowired
@@ -22,7 +22,13 @@ public class ListenersServiceImpl implements ListenersService {
     private EntityManager em;
 
     public Listeners findListenersByCountry(Artist artist, String country){
-        TypedQuery<Listeners> query = em.createQuery("select rank from Listeners rank join rank.artist artist where rank.country = :country and artist.name = :name", Listeners.class);
+
+        StringBuffer queryBuffer = new StringBuffer();
+        queryBuffer.append(" select rank from Listeners rank");
+        queryBuffer.append(" join rank.artist artist");
+        queryBuffer.append(" where rank.country = :country and artist.name = :name");
+
+        TypedQuery<Listeners> query = em.createQuery(queryBuffer.toString(), Listeners.class);
         query = query.setParameter("country", country);
         query = query.setParameter("name", artist.getName());
 
@@ -35,7 +41,13 @@ public class ListenersServiceImpl implements ListenersService {
     }
 
     public List<Listeners> listListenersByCountry(String country){
-        TypedQuery<Listeners> query = em.createQuery("select rank from Listeners rank join rank.artist artist where rank.country = :country", Listeners.class);
+
+        StringBuffer queryBuffer = new StringBuffer();
+        queryBuffer.append(" select rank from Listeners rank");
+        queryBuffer.append(" join rank.artist artist");
+        queryBuffer.append(" where rank.country = :country");
+
+        TypedQuery<Listeners> query = em.createQuery(queryBuffer.toString(), Listeners.class);
         query = query.setParameter("country", country);
         return query.getResultList();
     }

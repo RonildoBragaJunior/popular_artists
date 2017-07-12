@@ -16,7 +16,7 @@ public class Listeners {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "listeners_id")
-    private int id;
+    private long id;
 
     @Column(name = "country")
     private String country;
@@ -30,11 +30,11 @@ public class Listeners {
     @ManyToOne
     private Artist artist;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -53,7 +53,6 @@ public class Listeners {
     public void setListeners(long listeners) {
         this.listeners = listeners;
     }
-
     public void setListeners(String listeners) {
         this.listeners = Long.parseLong(listeners);
     }

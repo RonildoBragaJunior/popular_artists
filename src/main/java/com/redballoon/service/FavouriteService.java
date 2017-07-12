@@ -7,7 +7,11 @@ import java.util.List;
 
 public interface FavouriteService {
 
-    public void save(User user, String id);
+    public List<Favourite> listByUser(User user);
+
+    public Favourite findFavourite(Favourite favourite);
+
+    public void save(String username, String[] id);
+
     public void save(Favourite favourite);
-    public List<Favourite> listFavouriteByUser(String country);
 }

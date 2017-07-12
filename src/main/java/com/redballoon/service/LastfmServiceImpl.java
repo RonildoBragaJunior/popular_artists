@@ -6,13 +6,13 @@ import com.redballoon.model.json.LastfmArtists;
 import com.redballoon.model.json.ResponseJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
+@Service("lastfmService")
 public class LastfmServiceImpl implements LastfmService{
 
     private final String API_KEY = "2a8afd03aa6c17e37847a6fd79b0eaad";
@@ -25,7 +25,7 @@ public class LastfmServiceImpl implements LastfmService{
     private List<Artist> persistResponse(List<LastfmArtists> lastfmArtistsList, String country){
         List<Artist> artistList = new LinkedList<Artist>();
         for(LastfmArtists lastfmArtists : lastfmArtistsList){
-            Artist artist = artistService.findArtistByName(lastfmArtists.getName());
+            Artist artist = artistService.findByName(lastfmArtists.getName());
 
             if(artist == null){
                 artist = lastfmArtists.toArtist();

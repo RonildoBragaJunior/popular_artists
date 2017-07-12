@@ -1,10 +1,9 @@
 package com.redballoon.controller;
 
+import com.redballoon.model.Favourite;
 import com.redballoon.model.Listeners;
 import com.redballoon.model.User;
-import com.redballoon.service.ListenersServiceImpl;
-import com.redballoon.service.LastfmService;
-import com.redballoon.service.UserService;
+import com.redballoon.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +24,9 @@ public class HomeController {
     @Autowired
     private LastfmService lastfmService;
     @Autowired
-    private ListenersServiceImpl listenersServiceImpl;
+    private ListenersService listenersService;
+    @Autowired
+    private FavouriteService favouriteService;
 
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
@@ -50,32 +51,44 @@ public class HomeController {
     @ResponseBody
     @RequestMapping(value = "/loadWebserviceTable")
     public String loadWebserviceTable() {
-        List<Listeners> artistList = listenersServiceImpl.listListenersByCountry("australia");
-        String result = new String();
+        List<Listeners> artistList = listenersService.listListenersByCountry("australia");
+        StringBuffer result = new StringBuffer();
 
-        result+="{\"data\": [";
+        result.append("{\"data\": [");
         for(Listeners listeners : artistList) {
-            result+="[\""+ listeners.getArtist().getId()+"\",";
-            result+="\""+ listeners.getArtist().getName()+"\",";
-            result+="\""+ listeners.getCountry()+"\",";
-            result+="\""+ listeners.getListeners()+"\"],";
+            result.append("[\""+ listeners.getArtist().getId()+"\",");
+            result.append("\""+ listeners.getArtist().getName()+"\",");
+            result.append("\""+ listeners.getCountry()+"\",");
+            result.append("\""+ listeners.getListeners()+"\"],");
         }
-        result = result.substring(0,result.length() - 1);
-        result+="]}";
-
-        return result;
+        result.append("]}");
+        return result.replace(result.length() - 3, result.length()-2, "").toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/loadFavouriteTable")
     public String loadFavouriteTable() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        List<Favourite> favouriteList = favouriteService.listByUser(user);
 
-        return "{\"data\": [[\"1\",\"Ronildo\"],[\"2\",\"Metalica\"]]}";
+        StringBuffer result = new StringBuffer();
+        result.append("{\"data\": [");
+        for(Favourite favourite : favouriteList) {
+            result.append("[\""+ favourite.getArtist().getId()+"\",");
+            result.append("\""+ favourite.getArtist().getName()+"\",");
+            result.append("\""+ favourite.getArtist().getUrl()+"\"],");
+        }
+        result.append("]}");
+        return result.replace(result.length() - 3, result.length()-2, "").toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/saveFavourite")
     public String saveFavourite(@RequestParam("id_list") String id_list) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        favouriteService.save(auth.getName(), id_list.split(";"));
 
         return "the favourite has been inserted"+id_list;
     }

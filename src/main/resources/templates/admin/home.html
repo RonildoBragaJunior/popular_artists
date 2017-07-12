@@ -33,7 +33,6 @@
                             <input type="text" class="form-control" id="country">
                         </div>
                         <button type="button" id="btn_consume" class="btn btn-default btn-sm">Consume</button>
-                        <button type="button" id="btn_reload" class="btn btn-default btn-sm">Reload</button>
                         <button type="button" id="btn_save_favourite" class="btn btn-default btn-sm">Favourite</button>
                     </div>
                 </div>
@@ -107,7 +106,8 @@
         } );
 
         $('#btn_save_favourite').click( function () {
-            saveFavourite(webservice_table);
+            saveFavourite(webservice_table, favourite_table);
+
         } );
 
 
@@ -116,13 +116,14 @@
                 url: '/consumeLastfmWebservice?country='+$("#country").val(),
                 success: function(result){
                     console.log(result);
+                    webservice_table.ajax.reload();
                 }
             });
         });
 
     });
 
-    function saveFavourite(webservice_table){
+    function saveFavourite(webservice_table, favourite_table){
         var id_list = "";
         webservice_table.rows('.active').data().each(function (value, index) {
             id_list += value[0]+";"
@@ -132,6 +133,7 @@
             url: '/saveFavourite?id_list='+id_list,
             success: function(result){
                 console.log(result);
+                favourite_table.ajax.reload();
             }
         });
     }
