@@ -48,9 +48,9 @@ public class HomeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/searchArtistsByCountry")
-    public String searchArtistsByCountry(@RequestParam("country") String country) {
-        List<ArtistListeners> artistList = artistListenersServiceImpl.listArtistListenersByCountry(country);
+    @RequestMapping(value = "/loadWebserviceTable")
+    public String loadWebserviceTable() {
+        List<ArtistListeners> artistList = artistListenersServiceImpl.listArtistListenersByCountry("australia");
         String result = new String();
 
         result+="{\"data\": [";
@@ -64,6 +64,20 @@ public class HomeController {
         result+="]}";
 
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/loadFavouriteTable")
+    public String loadFavouriteTable() {
+
+        return "{\"data\": [[\"1\",\"Ronildo\"],[\"2\",\"Metalica\"]]}";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/saveFavourite")
+    public String saveFavourite(@RequestParam("id_list") String id_list) {
+
+        return "the favourite has been inserted"+id_list;
     }
 
 
