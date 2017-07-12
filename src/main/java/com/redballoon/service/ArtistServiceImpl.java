@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("artistService")
 public class ArtistServiceImpl implements ArtistService {
@@ -25,6 +26,9 @@ public class ArtistServiceImpl implements ArtistService {
     }
     public Artist findById(Long id) {
         return artistRepository.findById(id);
+    }
+    public List<Artist> findAll() {
+        return artistRepository.findAll();
     }
 
     public Artist saveArtist(Artist artist) {
