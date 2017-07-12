@@ -12,215 +12,290 @@
     <schema id="6" parent="1" name="sys"/>
     <table id="7" parent="2" name="artist"/>
     <table id="8" parent="2" name="artist_listeners"/>
-    <table id="9" parent="2" name="popular_artist_rank"/>
-    <table id="10" parent="2" name="popular_artist_user"/>
-    <table id="11" parent="2" name="role"/>
-    <table id="12" parent="2" name="user"/>
-    <table id="13" parent="2" name="user_role"/>
-    <column id="14" parent="7" name="artist_id">
+    <table id="9" parent="2" name="favourite"/>
+    <table id="10" parent="2" name="listeners"/>
+    <table id="11" parent="2" name="popular_artist_rank"/>
+    <table id="12" parent="2" name="popular_artist_user"/>
+    <table id="13" parent="2" name="role"/>
+    <table id="14" parent="2" name="user"/>
+    <table id="15" parent="2" name="user_role"/>
+    <column id="16" parent="7" name="artist_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="7" name="name">
+    <column id="17" parent="7" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="16" parent="7" name="url">
+    <column id="18" parent="7" name="url">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="17" parent="7" name="PRIMARY">
+    <key id="19" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>artist_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="18" parent="8" name="artist_listeners_id">
+    <column id="20" parent="8" name="artist_listeners_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="19" parent="8" name="country">
+    <column id="21" parent="8" name="country">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="20" parent="8" name="listeners">
+    <column id="22" parent="8" name="listeners">
       <Position>3</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <column id="21" parent="8" name="rank">
+    <column id="23" parent="8" name="rank">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="22" parent="8" name="artist_artist_id">
+    <column id="24" parent="8" name="artist_artist_id">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="23" parent="8" name="FK1ls3dcr09hwec3yy651sc7cm4">
+    <index id="25" parent="8" name="FK1ls3dcr09hwec3yy651sc7cm4">
       <ColNames>artist_artist_id</ColNames>
     </index>
-    <key id="24" parent="8" name="PRIMARY">
+    <key id="26" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>artist_listeners_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="25" parent="8" name="FK1ls3dcr09hwec3yy651sc7cm4">
+    <foreign-key id="27" parent="8" name="FK1ls3dcr09hwec3yy651sc7cm4">
       <ColNames>artist_artist_id</ColNames>
       <RefSchemaName>redballoon_db</RefSchemaName>
       <RefTableName>artist</RefTableName>
       <RefColNames>artist_id</RefColNames>
     </foreign-key>
-    <column id="26" parent="9" name="popular_artist_rank_id">
+    <column id="28" parent="9" name="favourite_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="27" parent="9" name="country">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="28" parent="9" name="listeners">
-      <Position>3</Position>
-      <DataType>bigint(20)|0</DataType>
-    </column>
-    <column id="29" parent="9" name="rank">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="30" parent="9" name="artist_artist_id">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <index id="31" parent="9" name="FKgcec9tw0663nwi3oaf7q72a7p">
-      <ColNames>artist_artist_id</ColNames>
-    </index>
-    <key id="32" parent="9" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>popular_artist_rank_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="33" parent="9" name="FKgcec9tw0663nwi3oaf7q72a7p">
-      <ColNames>artist_artist_id</ColNames>
-      <RefSchemaName>redballoon_db</RefSchemaName>
-      <RefTableName>artist</RefTableName>
-      <RefColNames>artist_id</RefColNames>
-    </foreign-key>
-    <column id="34" parent="10" name="popular_artist_user_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="35" parent="10" name="artist_artist_id">
+    <column id="29" parent="9" name="artist_artist_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="36" parent="10" name="user_user_id">
+    <column id="30" parent="9" name="user_user_id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="37" parent="10" name="FKcwux0rig78yhqfbiptm4dp8b1">
-      <ColNames>artist_artist_id</ColNames>
-    </index>
-    <index id="38" parent="10" name="FKie00ymhksel9f3pgkn1dw3egi">
+    <index id="31" parent="9" name="FKj12vilmhvg6j1cgcmf63xromq">
       <ColNames>user_user_id</ColNames>
     </index>
-    <key id="39" parent="10" name="PRIMARY">
+    <index id="32" parent="9" name="FKk0amxk8q4jg5n225gcskbnrsw">
+      <ColNames>artist_artist_id</ColNames>
+    </index>
+    <key id="33" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>popular_artist_user_id</ColNames>
+      <ColNames>favourite_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="40" parent="10" name="FKcwux0rig78yhqfbiptm4dp8b1">
+    <foreign-key id="34" parent="9" name="FKk0amxk8q4jg5n225gcskbnrsw">
       <ColNames>artist_artist_id</ColNames>
       <RefSchemaName>redballoon_db</RefSchemaName>
       <RefTableName>artist</RefTableName>
       <RefColNames>artist_id</RefColNames>
     </foreign-key>
-    <foreign-key id="41" parent="10" name="FKie00ymhksel9f3pgkn1dw3egi">
+    <foreign-key id="35" parent="9" name="FKj12vilmhvg6j1cgcmf63xromq">
       <ColNames>user_user_id</ColNames>
       <RefSchemaName>redballoon_db</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>user_id</RefColNames>
     </foreign-key>
-    <column id="42" parent="11" name="role_id">
+    <column id="36" parent="10" name="listeners_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="43" parent="11" name="role">
+    <column id="37" parent="10" name="country">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="44" parent="11" name="PRIMARY">
+    <column id="38" parent="10" name="listeners">
+      <Position>3</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="39" parent="10" name="rank">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="40" parent="10" name="artist_artist_id">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="41" parent="10" name="FK9ucowaigxve4bglxe3t8dum4">
+      <ColNames>artist_artist_id</ColNames>
+    </index>
+    <key id="42" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>listeners_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="43" parent="10" name="FK9ucowaigxve4bglxe3t8dum4">
+      <ColNames>artist_artist_id</ColNames>
+      <RefSchemaName>redballoon_db</RefSchemaName>
+      <RefTableName>artist</RefTableName>
+      <RefColNames>artist_id</RefColNames>
+    </foreign-key>
+    <column id="44" parent="11" name="popular_artist_rank_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="45" parent="11" name="country">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="46" parent="11" name="listeners">
+      <Position>3</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="47" parent="11" name="rank">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="48" parent="11" name="artist_artist_id">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="49" parent="11" name="FKgcec9tw0663nwi3oaf7q72a7p">
+      <ColNames>artist_artist_id</ColNames>
+    </index>
+    <key id="50" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>popular_artist_rank_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="51" parent="11" name="FKgcec9tw0663nwi3oaf7q72a7p">
+      <ColNames>artist_artist_id</ColNames>
+      <RefSchemaName>redballoon_db</RefSchemaName>
+      <RefTableName>artist</RefTableName>
+      <RefColNames>artist_id</RefColNames>
+    </foreign-key>
+    <column id="52" parent="12" name="popular_artist_user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="53" parent="12" name="artist_artist_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="54" parent="12" name="user_user_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="55" parent="12" name="FKcwux0rig78yhqfbiptm4dp8b1">
+      <ColNames>artist_artist_id</ColNames>
+    </index>
+    <index id="56" parent="12" name="FKie00ymhksel9f3pgkn1dw3egi">
+      <ColNames>user_user_id</ColNames>
+    </index>
+    <key id="57" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>popular_artist_user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="58" parent="12" name="FKcwux0rig78yhqfbiptm4dp8b1">
+      <ColNames>artist_artist_id</ColNames>
+      <RefSchemaName>redballoon_db</RefSchemaName>
+      <RefTableName>artist</RefTableName>
+      <RefColNames>artist_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="59" parent="12" name="FKie00ymhksel9f3pgkn1dw3egi">
+      <ColNames>user_user_id</ColNames>
+      <RefSchemaName>redballoon_db</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="60" parent="13" name="role_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="61" parent="13" name="role">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="62" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>role_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="45" parent="12" name="user_id">
+    <column id="63" parent="14" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="46" parent="12" name="active">
+    <column id="64" parent="14" name="active">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="47" parent="12" name="email">
+    <column id="65" parent="14" name="email">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="48" parent="12" name="last_name">
+    <column id="66" parent="14" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="12" name="name">
+    <column id="67" parent="14" name="name">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="12" name="password">
+    <column id="68" parent="14" name="password">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="51" parent="12" name="PRIMARY">
+    <key id="69" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="52" parent="13" name="user_id">
+    <column id="70" parent="15" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="13" name="role_id">
+    <column id="71" parent="15" name="role_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="54" parent="13" name="FKa68196081fvovjhkek5m97n3y">
+    <index id="72" parent="15" name="FKa68196081fvovjhkek5m97n3y">
       <ColNames>role_id</ColNames>
     </index>
-    <key id="55" parent="13" name="PRIMARY">
+    <key id="73" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id
 role_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="56" parent="13" name="FK859n2jvi8ivhui0rl0esws6o">
+    <foreign-key id="74" parent="15" name="FK859n2jvi8ivhui0rl0esws6o">
       <ColNames>user_id</ColNames>
       <RefSchemaName>redballoon_db</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>user_id</RefColNames>
     </foreign-key>
-    <foreign-key id="57" parent="13" name="FKa68196081fvovjhkek5m97n3y">
+    <foreign-key id="75" parent="15" name="FKa68196081fvovjhkek5m97n3y">
       <ColNames>role_id</ColNames>
       <RefSchemaName>redballoon_db</RefSchemaName>
       <RefTableName>role</RefTableName>

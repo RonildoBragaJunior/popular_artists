@@ -2,7 +2,7 @@ package com.redballoon;
 
 import com.redballoon.model.Artist;
 import com.redballoon.service.LastfmServiceImpl;
-import com.redballoon.service.ArtistListenersService;
+import com.redballoon.service.ListenersService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class LastfmServiceImplTest {
     @Autowired
     private LastfmServiceImpl lastfmServiceImpl;
     @Autowired
-    private ArtistListenersService artistListenersService;
+    private ListenersService listenersService;
 
     @Test
     public void listTopArtitstFromAustralia() throws Exception {

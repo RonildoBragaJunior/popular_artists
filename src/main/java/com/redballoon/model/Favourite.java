@@ -4,12 +4,12 @@ package com.redballoon.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "popular_artist_user")
-public class ArtistUser {
+@Table(name = "favourite")
+public class Favourite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "popular_artist_user_id")
+    @Column(name = "favourite_id")
     private int id;
 
     @ManyToOne

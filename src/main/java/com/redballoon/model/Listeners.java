@@ -10,12 +10,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-@Table(name = "artist_listeners")
-public class ArtistListeners {
+@Table(name = "listeners")
+public class Listeners {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "artist_listeners_id")
+    @Column(name = "listeners_id")
     private int id;
 
     @Column(name = "country")

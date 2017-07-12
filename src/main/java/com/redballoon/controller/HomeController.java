@@ -1,8 +1,8 @@
 package com.redballoon.controller;
 
-import com.redballoon.model.ArtistListeners;
+import com.redballoon.model.Listeners;
 import com.redballoon.model.User;
-import com.redballoon.service.ArtistListenersServiceImpl;
+import com.redballoon.service.ListenersServiceImpl;
 import com.redballoon.service.LastfmService;
 import com.redballoon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class HomeController {
     @Autowired
     private LastfmService lastfmService;
     @Autowired
-    private ArtistListenersServiceImpl artistListenersServiceImpl;
+    private ListenersServiceImpl listenersServiceImpl;
 
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
@@ -50,15 +50,15 @@ public class HomeController {
     @ResponseBody
     @RequestMapping(value = "/loadWebserviceTable")
     public String loadWebserviceTable() {
-        List<ArtistListeners> artistList = artistListenersServiceImpl.listArtistListenersByCountry("australia");
+        List<Listeners> artistList = listenersServiceImpl.listListenersByCountry("australia");
         String result = new String();
 
         result+="{\"data\": [";
-        for(ArtistListeners artistListeners : artistList) {
-            result+="[\""+artistListeners.getArtist().getId()+"\",";
-            result+="\""+artistListeners.getArtist().getName()+"\",";
-            result+="\""+artistListeners.getCountry()+"\",";
-            result+="\""+artistListeners.getListeners()+"\"],";
+        for(Listeners listeners : artistList) {
+            result+="[\""+ listeners.getArtist().getId()+"\",";
+            result+="\""+ listeners.getArtist().getName()+"\",";
+            result+="\""+ listeners.getCountry()+"\",";
+            result+="\""+ listeners.getListeners()+"\"],";
         }
         result = result.substring(0,result.length() - 1);
         result+="]}";
