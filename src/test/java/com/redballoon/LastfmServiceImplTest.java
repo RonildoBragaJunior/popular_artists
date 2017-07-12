@@ -24,14 +24,14 @@ public class LastfmServiceImplTest {
     public void listTopArtitstFromAustralia() throws Exception {
         List<Artist> lastfmArtistsList = lastfmServiceImpl.consumeLastfmWebservice("australia");
         for(Artist artistsList : lastfmArtistsList)
-            System.out.println(artistsList.getName());
+            assert artistsList.getName() != null;
     }
 
     @Test
     public void listTopArtitstFromBrazil() throws Exception {
         List<Artist> lastfmArtistsList = lastfmServiceImpl.consumeLastfmWebservice("brazil");
         for(Artist artistsList : lastfmArtistsList)
-            System.out.println(artistsList.getName());
+            assert artistsList.getName() != null;
     }
 
 
