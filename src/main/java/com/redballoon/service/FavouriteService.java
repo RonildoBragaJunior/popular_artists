@@ -14,4 +14,6 @@ public interface FavouriteService {
     public void save(String username, String[] id);
 
     public void save(Favourite favourite);
+
+    public void clean(User user);
 }

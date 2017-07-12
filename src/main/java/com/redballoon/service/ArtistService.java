@@ -8,5 +8,6 @@ public interface ArtistService {
     public Artist findByName(String name);
     public Artist saveArtist(Artist artist);
     public Artist findById(Long id);
+    public void clean();
 
 }

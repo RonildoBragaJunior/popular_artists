@@ -27,6 +27,8 @@ public class HomeController {
     private ListenersService listenersService;
     @Autowired
     private FavouriteService favouriteService;
+    @Autowired
+    private ArtistService artistService;
 
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
@@ -51,7 +53,7 @@ public class HomeController {
     @ResponseBody
     @RequestMapping(value = "/loadWebserviceTable")
     public String loadWebserviceTable() {
-        List<Listeners> artistList = listenersService.listListenersByCountry("australia");
+        List<Listeners> artistList = listenersService.findAll();
         StringBuffer result = new StringBuffer();
 
         result.append("{\"data\": [");
@@ -62,7 +64,10 @@ public class HomeController {
             result.append("\""+ listeners.getListeners()+"\"],");
         }
         result.append("]}");
-        return result.replace(result.length() - 3, result.length()-2, "").toString();
+        if(result.length()>12)
+            return result.replace(result.length() - 3, result.length()-2, "").toString();
+        else
+            return result.toString();
     }
 
     @ResponseBody
@@ -80,7 +85,10 @@ public class HomeController {
             result.append("\""+ favourite.getArtist().getUrl()+"\"],");
         }
         result.append("]}");
-        return result.replace(result.length() - 3, result.length()-2, "").toString();
+        if(result.length()>12)
+            return result.replace(result.length() - 3, result.length()-2, "").toString();
+        else
+            return result.toString();
     }
 
     @ResponseBody
@@ -90,8 +98,18 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         favouriteService.save(auth.getName(), id_list.split(";"));
 
-        return "the favourite has been inserted"+id_list;
+        return "the favourite list has been inserted";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/clean")
+    public String clean() {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        favouriteService.clean(user);
+        artistService.clean();
+
+        return "the favourite list has been deleted";
+    }
 }

@@ -33,7 +33,7 @@ public class LastfmServiceImpl implements LastfmService{
 
             }
 
-            Listeners listeners = listenersService.findListenersByCountry(artist, country);
+            Listeners listeners = listenersService.findByCountry(artist, country);
             if(listeners == null){
                 listeners = new Listeners();
                 listeners.setArtist(artist);
@@ -64,6 +64,6 @@ public class LastfmServiceImpl implements LastfmService{
             return persistResponse(lastfmArtistsList, country);
         }
 
-        throw new RuntimeException("Web service is out");
+        return null;
     }
 }

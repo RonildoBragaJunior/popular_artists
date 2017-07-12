@@ -21,7 +21,7 @@ public class ListenersServiceImpl implements ListenersService {
     @PersistenceContext
     private EntityManager em;
 
-    public Listeners findListenersByCountry(Artist artist, String country){
+    public Listeners findByCountry(Artist artist, String country){
 
         StringBuffer queryBuffer = new StringBuffer();
         queryBuffer.append(" select rank from Listeners rank");
@@ -40,7 +40,7 @@ public class ListenersServiceImpl implements ListenersService {
 
     }
 
-    public List<Listeners> listListenersByCountry(String country){
+    public List<Listeners> findByCountry(String country){
 
         StringBuffer queryBuffer = new StringBuffer();
         queryBuffer.append(" select rank from Listeners rank");
@@ -50,6 +50,10 @@ public class ListenersServiceImpl implements ListenersService {
         TypedQuery<Listeners> query = em.createQuery(queryBuffer.toString(), Listeners.class);
         query = query.setParameter("country", country);
         return query.getResultList();
+    }
+
+    public List<Listeners> findAll(){
+        return listenersRepository.findAll();
     }
 
     public void save(Listeners listeners){

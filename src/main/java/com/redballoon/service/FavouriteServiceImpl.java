@@ -8,10 +8,8 @@ import com.redballoon.repository.FavouriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service("favouriteService")
@@ -76,5 +74,14 @@ public class FavouriteServiceImpl implements FavouriteService{
         favouriteRepository.save(favourite);
     }
 
+    @Transactional
+    public void clean(User user){
+        StringBuffer queryBuffer = new StringBuffer();
+        queryBuffer.append(" delete FROM Favourite favourite");
+        queryBuffer.append(" where favourite.user.id = :user_id");
 
+        Query query = em.createQuery(queryBuffer.toString());
+        query = query.setParameter("user_id", user.getId());
+        query.executeUpdate();
+    }
 }

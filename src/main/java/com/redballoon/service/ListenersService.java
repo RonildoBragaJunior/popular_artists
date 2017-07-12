@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface ListenersService {
 
-    public Listeners findListenersByCountry(Artist artist, String country);
-    public List<Listeners> listListenersByCountry(String country);
+    public Listeners findByCountry(Artist artist, String country);
+    public List<Listeners> findByCountry(String country);
+    public List<Listeners> findAll();
     public void save(Listeners listeners);
 }

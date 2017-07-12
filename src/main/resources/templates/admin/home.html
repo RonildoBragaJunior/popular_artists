@@ -34,6 +34,7 @@
                         </div>
                         <button type="button" id="btn_consume" class="btn btn-default btn-sm">Consume</button>
                         <button type="button" id="btn_save_favourite" class="btn btn-default btn-sm">Favourite</button>
+                        <button type="button" id="btn_clean" class="btn btn-default btn-sm">Clean</button>
                     </div>
                 </div>
             </div>
@@ -70,6 +71,12 @@
                                 <th>Name</th>
                             </tr>
                             </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -105,11 +112,6 @@
             $(this).toggleClass('active');
         } );
 
-        $('#btn_save_favourite').click( function () {
-            saveFavourite(webservice_table, favourite_table);
-
-        } );
-
 
         $("#btn_consume").click(function(){
             $.ajax({
@@ -117,6 +119,21 @@
                 success: function(result){
                     console.log(result);
                     webservice_table.ajax.reload();
+                }
+            });
+        });
+
+        $('#btn_save_favourite').click( function () {
+            saveFavourite(webservice_table, favourite_table);
+        } );
+
+        $("#btn_clean").click(function(){
+            $.ajax({
+                url: '/clean',
+                success: function(result){
+                    console.log(result);
+                    webservice_table.ajax.reload();
+                    favourite_table.ajax.reload();
                 }
             });
         });
