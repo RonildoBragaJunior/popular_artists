@@ -6,6 +6,6 @@
 - http://localhost:8080/registration
 - http://localhost:8080/login
 
-<iframe width="420" height="315"
-src="https://www.youtube.com/embed/ZoRt7ftpL3o?autoplay=1">
-</iframe>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ZoRt7ftpL3o
+" target="_blank"><img src="http://img.youtube.com/vi/ZoRt7ftpL3o/0.jpg"
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
