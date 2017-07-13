@@ -6,3 +6,6 @@
 - http://localhost:8080/registration
 - http://localhost:8080/login
 
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/ZoRt7ftpL3o?autoplay=1">
+</iframe>
