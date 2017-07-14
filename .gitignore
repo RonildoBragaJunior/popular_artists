@@ -1,4 +1,5 @@
 /target/
+/src/main/resources/node_modules/
 .idea/
 .DS_Store
 popular_artists.iml
