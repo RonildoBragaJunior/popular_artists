@@ -1,18 +1,26 @@
 module.exports = {
-    entry: './static/js/app.js',
+    entry: [
+        './static/js/index.js'
+    ],
     output: {
-        path: './dist',
-        filename: 'app.bundle.js',
+        path: './static/js/',
+        publicPath: '/',
+        filename: 'bundle.js'
     },
     module: {
         loaders: [{
-            test: /\.jsx?$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
+            loader: 'babel',
             query: {
-                presets: ['react', 'es2015', 'stage-0'],
-                plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
+                presets: ['react', 'es2015', 'stage-1']
             }
         }]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './templates'
     }
-}
+};
