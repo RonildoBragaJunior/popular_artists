@@ -15,7 +15,7 @@ $ pip install -r requirements.txt
 
 $ npm install
 
-$ npm build
+$ npm run build
 
 ### Build Environments  ###
 Back to the root project

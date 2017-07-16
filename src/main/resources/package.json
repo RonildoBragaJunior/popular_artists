@@ -6,9 +6,9 @@
   "repository": "https://github.com/RonildoBragaJunior/popular_artists.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "build": "node ./node_modules/webpack/bin/webpack.js --progress --colors",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch",
-    "build": "webpack --progress --colors"
+    "test:watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "ISC",
