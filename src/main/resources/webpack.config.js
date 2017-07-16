@@ -1,6 +1,7 @@
 module.exports = {
     entry: [
-        './static/js/index.js'
+        './static/js/login.js',
+        './static/js/home.js'
     ],
     output: {
         path: './static/js/',

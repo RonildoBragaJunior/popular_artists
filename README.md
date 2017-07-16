@@ -18,7 +18,7 @@ $ npm install
 $ npm build
 
 ### Build Environments  ###
-Back the root project
+Back to the root project
 1. mvn clean
 2. mvn clean install
 3. Go to the target folder
